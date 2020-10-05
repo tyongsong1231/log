@@ -1,4 +1,6 @@
-package com.example.loglibrary
+package com.log.core
+
+import com.log.LogLevel
 
 
 /**
@@ -13,17 +15,10 @@ package com.example.loglibrary
  */
 abstract class AbstractLog {
 
-    private var logLevel = VERBOSE
+    private var logLevel = LogLevel.VERBOSE
 
     private var log: LogInterface? = null
 
-    companion object {
-        const val VERBOSE = 2
-        const val DEBUG = 3
-        const val INFO = 4
-        const val WARN = 5
-        const val ERROR = 6
-    }
 
     fun setLogLevel(logLevel: Int) {
         this.logLevel = logLevel
@@ -34,46 +29,33 @@ abstract class AbstractLog {
     }
 
     fun v(TAG: String, msg: String) {
-        if (logLevel <= VERBOSE) {
+        if (logLevel <= LogLevel.VERBOSE) {
             log?.v(TAG, msg)
         }
     }
 
     fun i(TAG: String, msg: String) {
-        if (logLevel <= INFO) {
+        if (logLevel <= LogLevel.INFO) {
             log?.i(TAG, msg)
         }
     }
 
     fun d(TAG: String, msg: String) {
-        if (logLevel <= DEBUG) {
+        if (logLevel <= LogLevel.DEBUG) {
             log?.d(TAG, msg)
         }
     }
 
     fun w(TAG: String, msg: String) {
-        if (logLevel <= WARN) {
+        if (logLevel <= LogLevel.WARN) {
             log?.w(TAG, msg)
         }
     }
 
     fun e(TAG: String, msg: String) {
-        if (logLevel <= ERROR) {
+        if (logLevel <= LogLevel.ERROR) {
             log?.e(TAG, msg)
         }
     }
 
-}
-
-interface LogInterface {
-
-    fun v(TAG: String, msg: String)
-
-    fun i(TAG: String, msg: String)
-
-    fun d(TAG: String, msg: String)
-
-    fun w(TAG: String, msg: String)
-
-    fun e(TAG: String, msg: String)
 }

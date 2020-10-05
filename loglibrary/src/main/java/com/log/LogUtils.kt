@@ -1,4 +1,7 @@
-package com.example.loglibrary
+package com.log
+
+import com.log.core.AbstractLog
+import com.log.core.LogInterface
 
 
 /**
@@ -14,8 +17,8 @@ package com.example.loglibrary
 object LogUtils : AbstractLog() {
 
     init {
-        setLogLevel(VERBOSE)
-        setLogger(
+        this.setLogLevel(LogLevel.VERBOSE)
+        this.setLogger(
             if (("Dalvik" == System.getProperty("java.vm.name"))) {
                 AndroidLog()
             } else {
